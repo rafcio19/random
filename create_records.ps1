@@ -9,7 +9,7 @@ function create_records($subnet_prefix, $domain_name, $ZoneName)
         $command = "Add-DnsServerResourceRecordA -ZoneName $ZoneName -Name $rec_name -IPv4Address $rec_ip -CreatePtr -ComputerName $domain_name"
         Write-Output "Running $command"
 
-        #Invoke-Expression $command
+        Invoke-Expression $command
         
 
     }
