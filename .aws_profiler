@@ -1,0 +1,21 @@
+sp(){
+    SP_ARG=$1
+    
+    if [ -n "$SP_ARG" ]; then
+        CHECK_PROFILE=`grep "\[profile $SP_ARG\]" ~/.aws/config`
+        if [ -n "$CHECK_PROFILE" ]; then
+            echo "Setting AWS profile to $SP_ARG";
+            export AWS_PROFILE=$SP_ARG
+        else
+            echo "AWS profile $1 does not exist"
+        fi
+    else
+        echo "Setting AWS profile to NULL";
+        export AWS_PROFILE=''
+    fi
+    
+}
+
+cap(){
+    echo "Current AWS profile is set to: $AWS_PROFILE"
+}
