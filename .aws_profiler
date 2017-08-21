@@ -2,7 +2,7 @@ sp(){
     SP_ARG=$1
     
     if [ -n "$SP_ARG" ]; then
-        CHECK_PROFILE=`grep "\[profile $SP_ARG\]" ~/.aws/config`
+        CHECK_PROFILE=`grep "\[$SP_ARG\]" ~/.aws/credentials`
         if [ -n "$CHECK_PROFILE" ]; then
             echo "Setting AWS profile to $SP_ARG";
             export AWS_PROFILE=$SP_ARG
