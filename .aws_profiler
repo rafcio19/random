@@ -1,3 +1,7 @@
+# source this in your .*rc file, whether .bashrc or .zshrc (and maybe others), 
+# ie. add following line:
+# source PATH_TO/.aws_profiler
+
 # switch aws profile
 sp(){
     SP_ARG=$1
