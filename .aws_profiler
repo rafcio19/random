@@ -1,3 +1,4 @@
+# switch aws profile
 sp(){
     SP_ARG=$1
     
@@ -16,6 +17,16 @@ sp(){
     
 }
 
+# show current aws profile
 cap(){
     echo "Current AWS profile is set to: $AWS_PROFILE"
+}
+
+# reset aws profile and keys
+resetp(){
+    echo "Resetting AWS profile and keys"
+    unset AWS_PROFILE
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
 }
