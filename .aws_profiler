@@ -1,6 +1,17 @@
 # source this in your .*rc file, whether .bashrc or .zshrc (and maybe others), 
 # ie. add following line:
 # source PATH_TO/.aws_profiler
+#
+# 
+# USAGE:
+# 1. to switch profile - PROFILE_NAME must be a valid profile in ~/.aws/credentials or
+#   sp PROFILE_NAME
+# 2. to reset profile and any explicit keys
+#   resp
+# 3. to check existing profile
+#   cap
+#
+#
 
 # switch aws profile
 sp(){
@@ -8,7 +19,8 @@ sp(){
     
     if [ -n "$SP_ARG" ]; then
         CHECK_PROFILE=`grep "\[$SP_ARG\]" ~/.aws/credentials`
-        if [ -n "$CHECK_PROFILE" ]; then
+        CHECK_PROFILE2=`grep "\[profile $SP_ARG\]" ~/.aws/config`
+        if [ -n "$CHECK_PROFILE" ] || [ -n "$CHECK_PROFILE2" ]; then
             resp
             echo "Setting AWS profile to $SP_ARG";
             export AWS_PROFILE=$SP_ARG
