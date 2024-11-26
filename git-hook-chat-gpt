@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Get the current branch name
+branch_name=$(git symbolic-ref --short HEAD)
+
+# Define the JIRA ticket regex pattern (e.g., PROJECT-123)
+jira_pattern="^[A-Z]+-[0-9]+"
+
+# Check if the branch name contains a JIRA ticket
+if [[ $branch_name =~ $jira_pattern ]]; then
+    # Extract the JIRA ticket from the branch name
+    jira_ticket="${BASH_REMATCH[0]}"
+
+    # Read the existing commit message
+    commit_message_file=$(git rev-parse --git-dir)/COMMIT_EDITMSG
+    commit_message=$(cat "$commit_message_file")
+
+    # Prepend the JIRA ticket if not already present
+    if [[ $commit_message != $jira_ticket* ]]; then
+        echo "$jira_ticket $commit_message" > "$commit_message_file"
+    fi
+else
+    echo "No JIRA ticket found in branch name. Proceeding without prefixing."
+fi
+
+exit 0
